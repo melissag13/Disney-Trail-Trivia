@@ -1,0 +1,42 @@
+Portland, OR		45.5425913,-122.7945059
+Sacramento, CA		38.5617256,-121.5829973
+Reno, NV			39.5581117,-119.9909261
+Salt Lake City, UT	40.7767833,-112.0605696
+Denver, CO			39.7645187,-104.9951961
+Omaha, NE			41.2920321,-96.221333
+Des Moines, IA		41.5667771,-93.6765561
+Davenport, IA 		41.5411931,-90.6590196
+Lafayette, IN		40.4050906,-86.928256
+Indianapolis, IN 	39.7799642,-86.2728346
+Louisville, KY 		38.1889917,-85.8168553
+Nashville, TN		36.1868683,-87.065434
+Chattanooga, TN		35.0984959,-85.3787761
+Asheville, NC		35.5391304,-82.7054906
+Charlotte, NC		35.2033534,-80.979611
+Columbia, SC 		34.0377141,-81.0776502
+Savannah, GA 		32.0407509,-81.3404615
+Jacksonville, FL 	30.3452841,-82.0006509
+Daytona Beach, FL 	29.2088155,-81.1666503
+Disney World		28.3852377,-81.5660627  	
+
+{location: {lat: 45.5425913, lng: -122.7945059}
+
+{location: {lat: 45.5425913, lng: -122.7945059, stopover: false},
+{location: {lat: 38.5617256, lng: -121.5829973, stopover: false},
+{location: {lat: 39.5581117, lng: -119.9909261, stopover: false},
+{location: {lat: 40.7767833, lng: -112.0605696, stopover: false},
+{location: {lat: 39.7645187, lng: -104.9951961, stopover: false},
+{location: {lat: 41.2920321, lng: -96.221333, stopover: false},
+{location: {lat: 41.5667771, lng: -93.6765561, stopover: false},
+{location: {lat: 41.5411931, lng: -90.6590196, stopover: false},
+{location: {lat: 40.4050906, lng: -86.928256, stopover: false},
+{location: {lat: 39.7799642, lng: -86.2728346, stopover: false},
+{location: {lat: 38.1889917, lng: -85.8168553, stopover: false},
+{location: {lat: 36.1868683, lng: -87.065434, stopover: false},
+{location: {lat: 35.0984959, lng: -85.3787761, stopover: false},
+{location: {lat: 35.5391304, lng: -82.7054906, stopover: false},
+{location: {lat: 35.2033534, lng: -80.979611, stopover: false},
+{location: {lat: 34.0377141, lng: -81.0776502, stopover: false},
+{location: {lat: 32.0407509, lng: -81.3404615, stopover: false},
+{location: {lat: 30.3452841, lng: -82.0006509, stopover: false},
+{location: {lat: 29.2088155, lng: -81.1666503, stopover: false},
