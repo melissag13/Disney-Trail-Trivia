@@ -12,14 +12,26 @@ body {
 	height: 200px;
 	color: black;
 	margin: 20px;
-	background-color: rgba(255, 255, 255, .7);   
+	background-color: rgba(255, 255, 255, .7);
+	box-shadow: 0 0 8px black;   
 }
 
 #mapIcon img {
-	height: auto;
+	
 	width: 95px;
 	margin: 20px;
+
+}
+
+#hoverMap {
+	position:absolute; 
+	width: 125px; 
+	height: 200px; 
 	float: right;
+	top: 0px; 
+	z-index:1;
+
+
 }
 
 #mapIcon {
@@ -27,6 +39,8 @@ body {
 	right: 0px;
 	bottom: 0px;
 }
+
+
 /*.clearfix {
 	clear: right;
 	
@@ -46,5 +60,6 @@ body {
 	height: 200px;
 	color: black;
 	margin: 20px;
-	background-color: rgba(255, 255, 255, .7);   
+	background-color: rgba(255, 255, 255, .7); 
+	box-shadow: 0 0 8px black;   
 }
