@@ -15,16 +15,6 @@
 
 <div id="answers">
 
-
-
-
-<!-- <label class="radio-inline"><input type="radio" name="option" value="">""</label>
-<label class="radio-inline"><input type="radio" name="option" value="">""</label>
-<br>
-<label class="radio-inline"><input type="radio" name="option" value="">""</label>
-<label class="radio-inline"><input type="radio" name="option" value="">""</label>
- -->
-
 </div>
 
 
@@ -43,31 +33,12 @@ $.ajax({
 	$("#trivia").html( JSON.stringify(response) );
 	$("#question").html( JSON.stringify(response.results[0].question) );
 
-
-
-	// var correctAnswer = $("#answers").append(response.results[0].correct_answer);
-	// var incorrect1 = $("#answers").append(response.results[0].incorrect_answers[0]);
-	// var incorrect2 = $("#answers").append(response.results[0].incorrect_answers[1]);
-	// var incorrect3 = $("#answers").append(response.results[0].incorrect_answers[2]);
-
 	var correctAnswer = response.results[0].correct_answer;
 	var incorrect1 = response.results[0].incorrect_answers[0]
 	var incorrect2 = response.results[0].incorrect_answers[1]
 	var incorrect3 = response.results[0].incorrect_answers[2]
 
 	console.log(correctAnswer);
-
-
-
-// 	randomAnswers = [response.results[0].correct_answer, response.results[0].incorrect_answers[0], response.results[0].incorrect_answers[1], response.results[0].incorrect_answers[2]];
-
-// 	var randomAnswer = randomAnswers[Math.floor(Math.random()*randomAnswers.length)];
-
-// 	console.log(randomAnswer);
-	
-
-// });
-
 
 
 var choices = [response.results[0].incorrect_answers[0], response.results[0].incorrect_answers[1], response.results[0].incorrect_answers[2]];
