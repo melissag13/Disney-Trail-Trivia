@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Sign-Up Today!</title>
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- LINK TO FIREBASE GOES HERE -->
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
 <body>
 <div class="container">
-	<br>
+	<br> 
 	<div class="row">
 
 		<!-- Sign-Up Panel-->
@@ -19,23 +19,25 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">Login In</h3>
 				</div>
-				<div class="panel-body">
+					<div class="panel-body">
 
 					<!-- Sign-up Form (note the various input "types")-->
-					<form role="form" name="myForm" action="demo_form.asp" onsubmit="return validateForm();" >
-					  <div class="form-group">
-					    <label for="text">Name:</label>
-					    <input type="text" class="form-control" id="nameinput">
-					  </div>
-					  <div class="form-group">
-					    <label for="text">Email:</label>
-					    <input type="email" class="form-control" id="emailinput">
-					  </div>
-					  
-					  <button type="submit" class="btn btn-default" id="addUser">Submit</button>
-					</form>
+						<form action="demo_form.asp" >
+							<div class="form-group" action="demo_form.asp">
+							    <label for="text">Name:</label>
+							    <input type="text" class="form-control" id="nameInput" name="name" required>
+						  	</div>
+						  	<div class="form-group" action="demo_form.asp">
+							    <label for="text">Email:</label>
+							    <input type="email" class="form-control" id="emailInput" name="email" required>
+							    <input type="submit" value="Submit" class="btn btn-default" id="addUser">
 
-				</div>
+							</div>
+
+						  <!-- <button type="submit" value="Submit" class="btn btn-default" id="addUser">Submit</button> -->
+						</form>
+
+					</div>
 			</div>
 		</div>
 	</div>
@@ -65,11 +67,11 @@
 
 // Initialize Firebase
 var config = {
-   apiKey: "AIzaSyCIdEkHBPUmCpZJDFnortraCHhYyUGN43A",
-   authDomain: "disney-trail.firebaseapp.com",
-   databaseURL: "https://disney-trail.firebaseio.com",
-   storageBucket: "disney-trail.appspot.com",
- };
+   apiKey: "AIzaSyCIdEkHBPUmCpZJDFnortraCHhYyUGN43A",
+   authDomain: "disney-trail.firebaseapp.com",
+   databaseURL: "https://disney-trail.firebaseio.com",
+   storageBucket: "disney-trail.appspot.com",
+ };
 
  
   firebase.initializeApp(config);
@@ -77,19 +79,36 @@ var config = {
 var dataRef = firebase.database();
 
 //Email validation 
-function validateForm() {
-    		var x = document.forms["myForm"]["email"].value;
-    		var atpos = x.indexOf("@");
-    		var dotpos = x.lastIndexOf(".");
-    		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-       		document.getElementById("alert").innerHTML="Invalid Email";
-        	preventDefault();
-        	empty();
-        	return false;
-    		}
-		}
+// function validateForm() {
+//     var x = $("name").val();
+//     if (x == null || x == "") {
+        
+//         return false;
+//     }
+//     var y = $("email").val();
+//     if (y == null || y == "") {
 
-// Initial Values
+//     	return false;
+//     }
+
+// }
+
+
+
+
+// function validateForm() {
+//     var atpos = x.indexOf("@");
+//     		var dotpos = x.lastIndexOf(".");
+//     		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+//        		document.getElementById("alert").innerHTML="Invalid Email";
+//         	preventDefault();
+//         	empty();
+//         	return false;
+//     		}
+// 		}
+
+
+// Capture Button Click
 $("#addUser").on("click", function() {
 	// Initial Values
 	var name = $('#nameInput').val().trim();
@@ -123,6 +142,8 @@ dataRef.ref().on("child_added", function(childSnapshot, prevChildKey) {
 	console.log("email " + userEmail);
 
 }); 
+	
+
 
 </script>
 </body>
