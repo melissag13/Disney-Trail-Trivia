@@ -12,6 +12,15 @@
 			})
 			.done(function(response) {
 				console.log(response);
+				var question = response.results[0].question;
+				var $questionDiv = $('#question');
+				$questionDiv.html(question);
+				var correctAnswer = $('<div>').html(response.results[0].correct_answer);
+				var incorrect1 = $('<div>').html(response.results[0].incorrect_answers[0]);
+				var incorrect2 = $('<div>').html(response.results[0].incorrect_answers[1]);
+				var incorrect3 = $('<div>').html(response.results[0].incorrect_answers[2]);
+				$questionDiv.append(correctAnswer).append(incorrect1).append(incorrect2).append(incorrect3);
+
 			})
 		});
 	});
@@ -22,6 +31,8 @@
 <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
 
 <button id="myButton">Get External Content</button>
+
+<div id="question"></div>
 
 </body>
 </html>
