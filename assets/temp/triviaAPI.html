@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<p id="trivia"></p>
+<br>
+<p id="question">Question:  </p>
+<br>
+
+
+<h3>Answers:</h3>
+
+
+<div id="answers">
+
+</div>
+
+
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$.ajax({
+		url: "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&category=22&difficulty=hard&type=multiple",
+		method: "GET"
+	})
+
+	.done(function(response) {
+	console.log(response);
+
+	$("#trivia").html( JSON.stringify(response) );
+	$("#question").html( JSON.stringify(response.results[0].question) );
+
+	var correctAnswer = response.results[0].correct_answer;
+	var incorrect1 = response.results[0].incorrect_answers[0]
+	var incorrect2 = response.results[0].incorrect_answers[1]
+	var incorrect3 = response.results[0].incorrect_answers[2]
+
+	console.log(correctAnswer);
+
+
+var choices = [response.results[0].incorrect_answers[0], response.results[0].incorrect_answers[1], response.results[0].incorrect_answers[2]];
+var correctAnswer = response.results[0].correct_answer;
+
+  
+var i = Math.floor((Math.random() * 3) + 0);
+
+
+  console.log(i);
+
+choices.splice(i, 0, correctAnswer); 
+
+console.log(choices);
+
+$.each(choices, function(i, val) {
+
+	console.log(i, val);
+
+  var $div = $('<div/>');
+  var $label = $('<label/>')
+  $label.text(val);
+  var input = $('<input/>')
+  input.attr('type', 'radio').val(val);
+
+  input.appendTo($div);
+  $label.appendTo($div);
+
+  $div.appendTo('#answers');
+  
+});
+});
+
+
+	
+
+
+</script>
+</body>
+</html>
+

@@ -38,8 +38,12 @@ body {
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
+	opacity: 0.75;
+	transition: opacity 0.33s;
 }
-
+#mapIcon:hover {
+	opacity: 1;
+}
 
 /*.clearfix {
 	clear: right;
