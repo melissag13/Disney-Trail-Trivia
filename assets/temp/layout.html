@@ -4,15 +4,25 @@
 	<title>Disney Trail</title>
 	<link rel="stylesheet" type="text/css" href="game.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+	<!-- Include Google Maps API -->
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBbT07jrWo3ljTp8MDWAtiWhFrO0hb8HuE"></script>
 
 </head>
 <body>
 	
 
 
-	<div class="well well-lg" id="quest">Questions 
+	<div class="well well-md" id="triviaPanel" >
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="quizQuestionHeader align-center" id="displayQuestion"></div>
+			</div>
+			<div class="panel-body">						
+				<div class="list-group" id="displayAnswers"></div>			
+			</div>			
+		</div>
 	</div>
+
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -55,6 +65,7 @@
 <!-- Modal -->
 
 </div>
+	<div class="well well-lg" id="USAMap"></div>
 
 	<div class="well well-lg" id="comment">Sassy Remarks 
 	</div>
@@ -73,6 +84,6 @@
 			$(".instructions").hide();
 		})
 	</script>
-
+	<script src="kh-map.js"></script>
 </body>
 </html>
