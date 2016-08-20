@@ -40,9 +40,8 @@ var waypoints = [
 		"longitude" : -81.5502655
 	}
 ]
-// Global variables to keep track of current waypoint and destination index
-currentWaypoint = 0;
-currentDestination = 1;
+// Global variables to keep track of current waypoint index
+currentWaypointIndex = 0;
 // Declare these globally so we can reuse map
 var directionsService = new google.maps.DirectionsService;
 var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -54,9 +53,10 @@ var waypointsArray = [];
 function initialize() {	
 	// Define map properties
 	var mapUSAProperties = {
-		center:new google.maps.LatLng(40.2617571,-94.8282592),
+		center:new google.maps.LatLng(39.1119932,-95.1798217),
 		zoom:4,
-		mapTypeId:google.maps.MapTypeId.ROADMAP
+		mapTypeId:google.maps.MapTypeId.ROADMAP,
+		disableDefaultUI: true
 	};
 	// Create a new map object
 	mapUSA=new google.maps.Map(document.getElementById("USAMap"),mapUSAProperties);
@@ -68,12 +68,12 @@ function initialize() {
 	});
 	//Add the marker to the map
 	marker.setMap(mapUSA);
-	// Create an info window to display a text bubble on the map
-	var infoWindow = new google.maps.InfoWindow({
-		content: "Click here to start!"
-	});
-	// Add the info windo to the map
-	infoWindow.open(mapUSA, marker);
+	// // Create an info window to display a text bubble on the map
+	// var infoWindow = new google.maps.InfoWindow({
+	// 	content: "Click here to start!"
+	// });
+	// // Add the info window to the map
+	// infoWindow.open(mapUSA, marker);
 
 	// Add an onclick listener
 	google.maps.event.addListener(marker, 'click',function() {
@@ -87,16 +87,12 @@ function initialize() {
 			// call display question, pass response
 			randomQuestion(response);
 		})
-		// Hid the map and display the triviaPanel
-		$('#USAMap').hide();
-		$('#triviaPanel').show();
 	});		
 	directionsDisplay.setMap(mapUSA);
 }; // end intialize
 
 // Calls the intialize function on window load
 google.maps.event.addDomListener(window, 'load', initialize);
-
 
 function randomQuestion(response) {
 	console.log("response:", response);
@@ -136,61 +132,50 @@ function randomQuestion(response) {
 							// TODO: Update currentWaypoint	
 							updateCurrentWaypoint();						
 							nextWaypoint();
-							console.log("You got the answer right, move on the the next waypoint!");
-							
+							console.log("You got the answer right, move on the the next waypoint!");							
 	                	} else {
 	                		// Display something about incorrect
 	                		console.log("Bummer, you answered wrong, looks like you're stuck!"); 
 	                	}
-
 		 			})
-	 			);
-	 	
+	 			);	 	
 	 	// Append it to the element
 	 	$displayAnswers.append($answer);
 	});		
 };
 
 function updateCurrentWaypoint() {
-	// get current waypoint
-	console.log("currentWaypoint:", currentWaypoint);
-	console.log("currentDestination:", currentDestination);
-	currentWaypoint++;
-	waypointsArray.push({location : {lat: waypoints[currentWaypoint].lattitude, lng: waypoints[currentWaypoint].longitude}});
-	
-	
-	// set next waypoint
-
-	
-
+	// Update current waypoint index
+	currentWaypointIndex++;	
+	// set next waypoint in array
+	waypointsArray.push({location : {lat: waypoints[currentWaypointIndex].lattitude,
+									 lng: waypoints[currentWaypointIndex].longitude}});
 }
 
 function nextWaypoint() {
-	
-
-	$('#triviaPanel').hide();
-	$('#USAMap').show();
-
 	directionsService.route({
 		origin: {lat: waypoints[0].lattitude, lng: waypoints[0].longitude},
-		destination: {lat: waypoints[currentDestination].lattitude, lng: waypoints[currentDestination].longitude},		
+		destination: {lat: waypoints[currentWaypointIndex].lattitude, 
+					  lng: waypoints[currentWaypointIndex].longitude},		
 		waypoints: waypointsArray,
 		optimizeWaypoints: false,                    
 		travelMode: google.maps.DirectionsTravelMode.DRIVING
 	}, function(response, status) {
 		if (status === 'OK') {
 			directionsDisplay.setDirections(response);
+			// Supress normal waypoint markers so the car icon shows
 			directionsDisplay.setOptions( { suppressMarkers: true } );
 			// Add current destination marker to add onclick to
-			var currentDestinatinMarker=new google.maps.Marker({
-				position: {lat: waypoints[currentDestination].lattitude, lng: waypoints[currentDestination].longitude},
+			var currentDestinationMarker=new google.maps.Marker({
+				position: {lat: waypoints[currentWaypointIndex].lattitude, 
+						   lng: waypoints[currentWaypointIndex].longitude},
 				icon:'kh-car-icon.png',
 				title: 'Click here to continue',
 			});
 			//Add the marker to the map
-			currentDestinatinMarker.setMap(mapUSA);
+			currentDestinationMarker.setMap(mapUSA);
 			// Add an onclick listener
-			google.maps.event.addListener(currentDestinatinMarker, 'click',function() {
+			google.maps.event.addListener(currentDestinationMarker, 'click',function() {
 				var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 				console.log(queryURL);
 				$.ajax({
@@ -201,15 +186,10 @@ function nextWaypoint() {
 					// call display question, pass response
 					randomQuestion(response);
 				})
-				// Hid the map and display the triviaPanel
-				$('#USAMap').hide();
-				$('#triviaPanel').show();
-			});		
-			
+			});
 		} else {
 			window.alert('Directions request failed due to ' + status);
 		}
 	});
-	currentDestination++;
 }
 //
