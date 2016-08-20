@@ -18,16 +18,16 @@ var waypoints = [
 		"state" : "C0",
 		"lattitude" : 39.7645187,
 		"longitude" : -104.9951961
+	},	
+	{ 	"city" : "Independence",
+		"state" : "MO",
+		"lattitude" : 39.1185682,
+		"longitude" : -94.4713356
 	},
 	{ 	"city" : "Chicago",
 		"state" : "IL",
 		"lattitude" : 41.8987739,
 		"longitude" : -87.6251055
-	},
-	{ 	"city" : "Independence",
-		"state" : "MO",
-		"lattitude" : 39.1185682,
-		"longitude" : -94.4713356
 	},
 	{ 	"city" : "Atlanta",
 		"state" : "GA",
@@ -42,7 +42,7 @@ var waypoints = [
 ]
 // Global variables to keep track of current waypoint and destination index
 currentWaypoint = 0;
-currentDestination = 0;
+currentDestination = 1;
 // Declare these globally so we can reuse map
 var directionsService = new google.maps.DirectionsService;
 var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -77,7 +77,7 @@ function initialize() {
 
 	// Add an onclick listener
 	google.maps.event.addListener(marker, 'click',function() {
-		var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&category=22&difficulty=hard&type=multiple";
+		var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 		console.log(queryURL);
 		$.ajax({
 			url: queryURL,
@@ -156,11 +156,12 @@ function updateCurrentWaypoint() {
 	console.log("currentWaypoint:", currentWaypoint);
 	console.log("currentDestination:", currentDestination);
 	currentWaypoint++;
-	currentDestination++;
+	waypointsArray.push({location : {lat: waypoints[currentWaypoint].lattitude, lng: waypoints[currentWaypoint].longitude}});
+	
 	
 	// set next waypoint
 
-	waypointsArray.push({location : {lat: waypoints[currentWaypoint].lattitude, lng: waypoints[currentWaypoint].longitude}});
+	
 
 }
 
@@ -174,7 +175,7 @@ function nextWaypoint() {
 		origin: {lat: waypoints[0].lattitude, lng: waypoints[0].longitude},
 		destination: {lat: waypoints[currentDestination].lattitude, lng: waypoints[currentDestination].longitude},		
 		waypoints: waypointsArray,
-		optimizeWaypoints: true,                    
+		optimizeWaypoints: false,                    
 		travelMode: google.maps.DirectionsTravelMode.DRIVING
 	}, function(response, status) {
 		if (status === 'OK') {
@@ -190,7 +191,7 @@ function nextWaypoint() {
 			currentDestinatinMarker.setMap(mapUSA);
 			// Add an onclick listener
 			google.maps.event.addListener(currentDestinatinMarker, 'click',function() {
-				var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&category=22&difficulty=hard&type=multiple";
+				var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 				console.log(queryURL);
 				$.ajax({
 					url: queryURL,
@@ -209,5 +210,6 @@ function nextWaypoint() {
 			window.alert('Directions request failed due to ' + status);
 		}
 	});
+	currentDestination++;
 }
 //
