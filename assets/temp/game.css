@@ -54,6 +54,27 @@ body {
 	height: auto;
 	width: 55px;
 	margin: 20px;
+	cursor: pointer;
+}
+
+.instructions {
+	position: center;
+	width: 600px;
+	height: 600px;
+	color: black;
+	margin: 20px;
+	background-color: rgba(255, 255, 255, .7);
+	box-shadow: 0 0 8px black;  
+	font-size:25px;
+	border-radius: 15px;
+	padding: 20px;
+	font: bold;
+	display: none;
+}
+
+.close {
+	float: right;
+	margin:0 0;
 }
 
 #comment {
