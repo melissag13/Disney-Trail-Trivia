@@ -8,7 +8,7 @@ body {
 
 #quest {
 	float: right;
-	width: 600px;
+	width: 700px;
 	height: 200px;
 	color: black;
 	margin: 20px;
@@ -75,6 +75,17 @@ body {
 .close {
 	float: right;
 	margin:0 0;
+}
+#map {
+	position: absolute;
+	bottom: 0%;
+	right: 0px;
+	width: 700px;
+	height: 400px;
+	color: black;
+	margin: 20px;
+	background-color: rgba(255, 255, 255, .7); 
+	box-shadow: 0 0 8px black;
 }
 
 #comment {
