@@ -6,7 +6,7 @@ body {
 	background-size: cover;
 }
 
-#triviaPanel {
+#questionPanel {
 	float: right;
 	width: 700px;
 	/*height: 200px;*/
@@ -34,7 +34,7 @@ body {
 
 }
 
-#mapIcon {
+/*#mapIcon {
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
@@ -43,7 +43,7 @@ body {
 }
 #mapIcon:hover {
 	opacity: 1;
-}
+}*/
 
 /*.clearfix {
 	clear: right;
@@ -55,6 +55,13 @@ body {
 	width: 55px;
 	margin: 20px;
 	cursor: pointer;
+
+}
+#instructIcon {
+	position: absolute;
+	bottom: 0%;
+	left: 0px;
+	margin: 20px;
 }
 
 .instructions {
@@ -88,7 +95,7 @@ body {
 	box-shadow: 0 0 8px black;
 }
 
-#comment {
+/*#comment {
 	position: absolute;
 	bottom: 0%;
 	left: 0px;
@@ -98,4 +105,4 @@ body {
 	margin: 20px;
 	background-color: rgba(255, 255, 255, .7); 
 	box-shadow: 0 0 8px black;   
-}
+}*/
