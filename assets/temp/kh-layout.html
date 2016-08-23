@@ -9,18 +9,32 @@
 
 
 </head>
-<body>
-	<div class="well well-lg" id="USAMap" style="width:700px;height:400px;"></div>
-	<div class="well well-md" id="triviaPanel" >
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="quizQuestionHeader align-center" id="displayQuestion"></div>
-			</div>
-			<div class="panel-body">						
-				<div class="list-group" id="displayAnswers"></div>			
+<body>	
+	<div class="well well-md" id="upperRightPanel" >
+		<div class="panel panel-default text-center">
+			<div class="panel-body">
+				<div class="align-center questionPanel" id="displayQuestion"></div>									
+				<div class="list-group questionPanel" id="displayAnswers"></div>
+				<div class="align-center messagePanel" id="messageDiv">
+					Welcome to Disney Trail! 
+					<br /> 
+					Click the car icon on the map to start.					
+				</div>
+				<button type="submit" class="btn btn-primary btn-lg" id="btnContinue">Continue</button>
 			</div>			
 		</div>
 	</div>
+
+	<div>
+		<img src="instruction-icon.png" alt="Image that shows instructions when clicked" id="instructIcon">
+		<p class="instructions">			
+			Welcome to join our amazing road trip. It starts from Seattle and ends at Disney, Orlando. There are totally # stops during the whole trip. In order to go to next stop, you have to answer the question correctly, otherwise you will stay at the same location and behind our schedule. There will be no timer for you to answer the questions. However, if you stay in the same city too long (meaning fail to answer 3 consecutive questions), we have to ask you to end the trip and come back next time with prepare. You may click on the map icon to check your current location. If you come to Disney within the time frame, we will issue you a Disney ticket as a reward, otherwise the trip is considered failed. We are looking forward to see you in Disney. Keep safe and enjoy! 
+
+		</p>
+	</div>
+
+	<div class="well well-lg" id="USAMap"></div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="kh-map.js"></script>
 </body>

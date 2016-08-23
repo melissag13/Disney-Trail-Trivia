@@ -40,6 +40,15 @@ var waypoints = [
 		"longitude" : -81.5502655
 	}
 ]
+// Arrays to randomly pull correct and incorrect messages from
+var correctMessages = [ "That was a quick pitstop, let's get back on the road!",
+						"Sun is shining, gas tank is full, kids are buckled in, let's get moving!",
+						"Phew, that cop wasn't looking our way, guess maybe we should stick to the speed limit"
+					  ];
+var incorrectMessages = ["Oh no, you ran out of gas! Looks like we'll be here awhile.",
+						 "Flat tire, where's the spare?",
+						 "I thought the sign said 70 officer!  Guess we won't be going anywhere for awhile."
+						];
 // Global variables to keep track of current waypoint index
 currentWaypointIndex = 0;
 // Declare these globally so we can reuse map
@@ -68,15 +77,13 @@ function initialize() {
 	});
 	//Add the marker to the map
 	marker.setMap(mapUSA);
-	// // Create an info window to display a text bubble on the map
-	// var infoWindow = new google.maps.InfoWindow({
-	// 	content: "Click here to start!"
-	// });
-	// // Add the info window to the map
-	// infoWindow.open(mapUSA, marker);
-
+	
 	// Add an onclick listener
 	google.maps.event.addListener(marker, 'click',function() {
+		// Toggle display divs
+		$('.questionPanel').toggle(true);
+		$('.messagePanel').toggle(false);
+
 		var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 		console.log(queryURL);
 		$.ajax({
@@ -85,18 +92,28 @@ function initialize() {
 		})
 		.done(function(response) {
 			// call display question, pass response
-			randomQuestion(response);
+			randomQuestion(response);			
 		})
 	});		
 	directionsDisplay.setMap(mapUSA);
+
+	// $('#messageDiv').html("Welcome to Disney Trail! <br /> Click the car icon on the map to start.");
 }; // end intialize
 
 // Calls the intialize function on window load
 google.maps.event.addDomListener(window, 'load', initialize);
 
+/* ************************************************************	*/
+/* Function : randomQuestion									*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
 function randomQuestion(response) {
-	console.log("response:", response);
-
+	// Toggle display panels
+	$('.questionPanel').show();
+	$('.messagePanel').hide();
+	$('#btnContinue').hide();
+	// Variables to build jquery objects for display
 	var $displayAnswers = $('#displayAnswers');
 	var $questionDiv = $('#displayQuestion');
 
@@ -114,9 +131,7 @@ function randomQuestion(response) {
 	choices.splice(correctAnswerIndex, 0, response.results[0].correct_answer); 
 
 	// Set the questionDiv to the question
-	$questionDiv.html(question);
-
-	
+	$questionDiv.html(question);	
 	// Display answers
 	$.each(choices, function( index, value) {			
 		// Create jquery object		
@@ -125,17 +140,24 @@ function randomQuestion(response) {
 		 		.html(value)
 		 		.addClass("list-group-item")		 		
 		 		// On click function for the button
-		 		.on('click', function() {			 			
+		 		.on('click', function() {	
+		 				// Toggle question and message panel display
+		 				$('.questionPanel').hide();
+						$('.messagePanel').show();
+						$('#btnContinue').show();						
 		 				// If correct show map with next waypoint plotted
-		 				//show map with next waypoint
-						if (index==correctAnswerIndex) {
-							// TODO: Update currentWaypoint	
+		 				// and show congrats message
+						if (index==correctAnswerIndex) {							
 							updateCurrentWaypoint();						
 							nextWaypoint();
-							console.log("You got the answer right, move on the the next waypoint!");							
+							$('#messageDiv').html(correctMessages[Math.floor((Math.random() * correctMessages.length))])
+											.removeClass("incorrect-answer")
+											.addClass("correct-answer");
 	                	} else {
-	                		// Display something about incorrect
-	                		console.log("Bummer, you answered wrong, looks like you're stuck!"); 
+	                		// Answer was incorrect, show bummer message, map does not move
+	                		$('#messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
+	                						.removeClass("correct-answer")
+	                						.addClass("incorrect-answer");
 	                	}
 		 			})
 	 			);	 	
@@ -150,9 +172,10 @@ function updateCurrentWaypoint() {
 	// set next waypoint in array
 	waypointsArray.push({location : {lat: waypoints[currentWaypointIndex].lattitude,
 									 lng: waypoints[currentWaypointIndex].longitude}});
+	
 }
 
-function nextWaypoint() {
+function nextWaypoint() {	
 	directionsService.route({
 		origin: {lat: waypoints[0].lattitude, lng: waypoints[0].longitude},
 		destination: {lat: waypoints[currentWaypointIndex].lattitude, 
@@ -169,27 +192,33 @@ function nextWaypoint() {
 			var currentDestinationMarker=new google.maps.Marker({
 				position: {lat: waypoints[currentWaypointIndex].lattitude, 
 						   lng: waypoints[currentWaypointIndex].longitude},
-				icon:'kh-car-icon.png',
-				title: 'Click here to continue',
+				icon:'kh-car-icon.png'
 			});
 			//Add the marker to the map
 			currentDestinationMarker.setMap(mapUSA);
-			// Add an onclick listener
-			google.maps.event.addListener(currentDestinationMarker, 'click',function() {
-				var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
-				console.log(queryURL);
-				$.ajax({
-					url: queryURL,
-					method: 'GET'
-				})
-				.done(function(response) {
-					// call display question, pass response
-					randomQuestion(response);
-				})
-			});
+			
 		} else {
 			window.alert('Directions request failed due to ' + status);
 		}
 	});
+
 }
-//
+
+$('#btnContinue').on('click', function() {
+	var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
+	console.log(queryURL);
+	$.ajax({
+		url: queryURL,
+		method: 'GET'
+	})
+	.done(function(response) {
+		// call display question, pass response
+		randomQuestion(response);
+	})
+});
+
+
+
+$("#instructIcon").on('click', function(){
+	$(".instructions").toggle();
+})

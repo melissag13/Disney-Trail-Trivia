@@ -6,66 +6,67 @@ body {
 	background-size: cover;
 }
 
-.showQuiz {	
-	display: none;
-}
-#triviaPanel {
-	width: 600px;
-}
-
-#quest {
+#upperRightPanel {
 	float: right;
-	width: 600px;
-	height: 200px;
+	width: 700px;
 	color: black;
 	margin: 20px;
 	background-color: rgba(255, 255, 255, .7);
 	box-shadow: 0 0 8px black;   
 }
-
-#mapIcon img {
-	
-	width: 95px;
-	margin: 20px;
-
+.questionPanel {
+	display: none;
+}
+#btnContinue { 
+	display: none;
+    background-color: #ee3724;
+    color: #fff;    
+    border-color: #554031;
+    font-size: 18px;
 }
 
-#hoverMap {
-	position:absolute; 
-	width: 125px; 
-	height: 200px; 
-	float: right;
-	top: 0px; 
-	z-index:1;
-
-
+.correct-answer {
+	color: #8f390a;
+    background-color: #7bae36;
+}
+.incorrect-answer {
+	color: #c5da33;
+    background-color: #ef3623;
+}
+#messageDiv {
+	/*background-color: red;	*/
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    /*color: #d4ebb1;*/
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px; 
+}
+#displayQuestion {
+    background-color: #018bb7;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #d4ebb1;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px; 
 }
 
-#mapIcon {
+#instructIcon {
 	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	opacity: 0.75;
-	transition: opacity 0.33s;
-}
-#mapIcon:hover {
-	opacity: 1;
-}
-
-/*.clearfix {
-	clear: right;
-	
-}*/
-
-#instructIcon img{
+	bottom: 0%;
+	left: 0px;
+	margin: 20px;
 	height: auto;
 	width: 55px;
-	margin: 20px;
 	cursor: pointer;
 }
-
 .instructions {
-	position: center;
+	position: absolute;
+	bottom: 0px;
+	left: 80px;
 	width: 600px;
 	height: 600px;
 	color: black;
@@ -75,16 +76,27 @@ body {
 	font-size:25px;
 	border-radius: 15px;
 	padding: 20px;
-	font: bold;
 	display: none;
+	z-index: 1;
 }
 
 .close {
 	float: right;
 	margin:0 0;
 }
+#USAMap {
+	position: absolute;
+	bottom: 0%;
+	right: 0px;
+	width: 700px;
+	height: 400px;
+	color: black;
+	margin: 20px;
+	background-color: rgba(255, 255, 255, .7); 
+	box-shadow: 0 0 8px black;
+}
 
-#comment {
+/*#comment {
 	position: absolute;
 	bottom: 0%;
 	left: 0px;
@@ -94,4 +106,4 @@ body {
 	margin: 20px;
 	background-color: rgba(255, 255, 255, .7); 
 	box-shadow: 0 0 8px black;   
-}
+}*/
