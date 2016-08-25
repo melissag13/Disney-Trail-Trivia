@@ -181,9 +181,12 @@ function randomQuestion(response) {
 												.addClass("correct-answer");
 		                	} else {
 		                		// Answer was incorrect, show bummer message, map does not move
-		                		$('.messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
-		                						.removeClass("correct-answer")
-		                						.addClass("incorrect-answer");
+		                		var $incorrectMessage = $('<div>').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))]);
+		                								
+		                		var $correctAnswer = $('<div>').html("<br/>The correct answer was " + response.results[0].correct_answer)
+		                								.addClass("correct-answer-text");
+		                		$('.messageDiv').html($incorrectMessage).append($correctAnswer).removeClass("correct-answer")
+		                								.addClass("incorrect-answer");
 		                	}
 		                } else {
 		                	console.log("We made it!");

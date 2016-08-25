@@ -18,7 +18,6 @@ body {
     bottom: 0px;
     width: 100%;
 }
-
 .upperRightPanel {
 	float: right;
 	width: 700px;
@@ -42,7 +41,7 @@ body {
     font-size: 40px;
     font-variant: small-caps; 
     position: absolute;
-    bottom: 40px;
+    bottom: 15px;
     left: 253px;
 }
 .correct-answer {
@@ -50,20 +49,36 @@ body {
     background-color: #7bae36;
     font-variant: small-caps;
 }
+.correct-answer-text {
+	font-variant: normal;
+	font-size: 18px;
+	color: black;
+}
 .incorrect-answer {
 	color: #c5da33;
     background-color: #f02624;
     font-variant: small-caps;
 }
-.messageDiv {	
+.messageDiv{	
     text-align: center;
     font-size: 36px;
     border-radius: 5px;  
     min-height: 208px;
-    display: flex;
+    /*display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
     padding: 20px;   
+}
+.loginDiv {	    
+    font-size: 24px;
+    border-radius: 5px;  
+    min-height: 208px; 
+    padding: 20px;   
+}
+.login-header {
+	text-align: center;
+	font-family: 'Rye', cursive;
+	font-size: 36px;
 }
 .click-start-div {
     text-align: center;
@@ -120,5 +135,8 @@ body {
 	box-shadow: 0 0 8px black;
 }
 .castle {
-	
+	border-radius: 10px;
+}
+.hrule-image {
+	margin-bottom: 20px;
 }
