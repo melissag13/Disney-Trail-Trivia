@@ -26,7 +26,8 @@ function validateForm(e) {
 }
 
 
-$('#userLogin').on("submit", function(e) {
+//$('#userLogin').on("submit", function(e) {
+$('#addUser').on('click', function(e) {
 	console.log("submit click");
 	e.preventDefault();
 	var isValid = validateForm();
