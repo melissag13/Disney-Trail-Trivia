@@ -189,7 +189,7 @@ function randomQuestion(response) {
 		                	console.log("We made it!");
 		                	$('#btnContinue').hide();
 		                	$('.messageDiv').html("We made it to Disney World!").removeClass("incorrect-answer correct-answer");
-		                	var $castle = $('<img>').attr("src", "../assets/images/castle.jpg").addClass("castle").appendTo($('.messageDiv'));
+		                	var $castle = $('<img>').attr("src", "assets/images/castle.jpg").addClass("castle").appendTo($('.messageDiv'));
 		                	$('.fireworks').fireworks();
 		                }
 		 			})

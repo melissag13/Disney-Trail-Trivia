@@ -27,6 +27,7 @@ function validateForm(e) {
 
 
 $('#userLogin').on("submit", function(e) {
+	console.log("submit click");
 	e.preventDefault();
 	var isValid = validateForm();
 	if(!isValid) {
