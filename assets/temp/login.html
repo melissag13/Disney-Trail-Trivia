@@ -90,7 +90,7 @@ function validateForm(e) {
 }
 
 // Initial Values
-<<<<<<< HEAD
+//<<<<<<< HEAD
 var name = "";
 var email = "";
 
@@ -98,7 +98,6 @@ var email = "";
 $("#addUser").on("click", function() {
 	name = $('#nameinput').val().trim();
 	email = $('#emailinput').val().trim();
-=======
 
 $('#my-form').on("submit", function(e) {
 	e.preventDefault();
@@ -110,16 +109,16 @@ $('#my-form').on("submit", function(e) {
 	var name = $('#nameinput').val().trim();
 	var email = $('#emailinput').val().trim();
 	
->>>>>>> b171799596c601f76532b18c47483c059c6a740e
+//>>>>>>> b171799596c601f76532b18c47483c059c6a740e
 
 	dataRef.ref().push({
 		name: name,
 		email: email,
 	});
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	// Don't refresh the page!
 	return false;
-=======
+//=======
 
 	//Clears form
 	$("#nameInput").val("");
@@ -129,7 +128,7 @@ $('#my-form').on("submit", function(e) {
 	var nextLocation = currentLocation.replace('login', 'layout'); //layout.html
 	// Doesn't refresh the page
 	window.location = nextLocation;
->>>>>>> b171799596c601f76532b18c47483c059c6a740e
+//>>>>>>> b171799596c601f76532b18c47483c059c6a740e
 });
 
 //Firebase watcher + initial loader 
@@ -155,7 +154,8 @@ dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functio
 	$("#emaildisplay").html(snapshot.val().email);
 	$("#agedisplay").html(snapshot.val().age);
 	$("#commentdisplay").html(snapshot.val().comment);
-})
+}
+)})
 
 </script>
 </body>
