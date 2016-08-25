@@ -21,7 +21,7 @@ body {
 .upperRightPanel {
 	float: right;
 	width: 700px;
-	height: 370px;
+	min-height: 370px;
 	color: black;
 	margin-top: 20px;
 	padding: 20px;
