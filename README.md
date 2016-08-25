@@ -2,10 +2,17 @@
 
 ![alt tag](https://github.com/clsepulveda/ForkThisProject/blob/master/assets/images/Screen%20Shot%202016-08-24%20at%2011.24.00%20PM.png)
 
-###Objective
+###Contributors:
+
+* Melissa Garcia [Github](https://github.com/melissag13)
+* Kristi Heredia [Github](https://github.com/froglander)
+* Carmen Sepulveda [Github](https://github.com/clsepulveda)
+* Huikai Zhong [Github](https://github.com/huikai123)
+
+###Objective:
 * Disney Trail is a trivia game in which the player must answer trivia questions correctly in order to move along the mapped path from Seattle, WA all the way to Disney World.
 
-###Technologies Used
+###Technologies Used:
 * HTML
 * CSS
 * Javascript
@@ -15,7 +22,7 @@
 * Google Maps API
 * Heroku
 
-###Instructions
+###Instructions:
 
 * User enters their name and email to get access to the game.
 * Once logged in, the user will click on the car in Seattle, WA to begin the game.
@@ -27,7 +34,7 @@
 * The goal is to get to Disney World. If the user reaches their destination, fireworks will be deployed.
 
 
-###Deployed App
+###Deployed App:
 
 Firebase: https://console.firebase.google.com/project/disney-trail/database/data/
 
