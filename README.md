@@ -7,7 +7,7 @@
 * Melissa Garcia [Github](https://github.com/melissag13)
 * Kristi Heredia [Github](https://github.com/froglander)
 * Carmen Sepulveda [Github](https://github.com/clsepulveda)
-* Huikai Zhong [Github](https://github.com/ )
+* Huikai Zhong [Github](https://github.com/huikai123)
 
 ###Objective
 * Disney Trail is a trivia game in which the player must answer trivia questions correctly in order to move along the mapped path from Seattle, WA all the way to Disney World.
