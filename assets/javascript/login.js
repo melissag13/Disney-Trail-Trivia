@@ -52,7 +52,7 @@ $('#addUser').on('click', function(e) {
 	
 	var currentLocation = window.location.href; //index.html
 	console.log(currentLocation);
-	var nextLocation = currentLocation.replace('index', 'disney-trail'); // disney-trail.html
+	var nextLocation = currentLocation.replace('index.html', 'disney-trail.html'); // disney-trail.html
 	console.log("nextLocation:", nextLocation);
 	// Doesn't refresh the page
 	window.location = nextLocation;
