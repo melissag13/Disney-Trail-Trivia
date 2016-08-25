@@ -1,0 +1,121 @@
+body {
+	background: url("../images/background.jpg") no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.title {
+	font-family: 'Rye', cursive;
+    font-size: 77px;
+    margin-left: 20px;
+    float: left;
+    text-shadow: 5px 5px 5px #f9f7e3;
+}
+.fireworks {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+}
+
+.upperRightPanel {
+	float: right;
+	width: 700px;
+	height: 370px;
+	color: black;
+	margin-top: 20px;
+	padding: 20px;
+	background-color: rgba(228, 236, 207, 0.75);
+	box-shadow: 0 0 8px black;
+	border-radius: 10px;
+	position: relative;
+}
+.questionPanel {
+	display: none;
+}
+#btnContinue { 
+	display: none;
+    background-color: #ee3724;
+    color: #fff;    
+    border-color: #554031;
+    font-size: 40px;
+    font-variant: small-caps; 
+    position: absolute;
+    bottom: 40px;
+    left: 253px;
+}
+.correct-answer {
+	color: #1f1f21;
+    background-color: #7bae36;
+    font-variant: small-caps;
+}
+.incorrect-answer {
+	color: #c5da33;
+    background-color: #f02624;
+    font-variant: small-caps;
+}
+.messageDiv {	
+    text-align: center;
+    font-size: 36px;
+    border-radius: 5px;  
+    min-height: 208px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;   
+}
+.click-start-div {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 10px;
+    left: 135px;
+}
+#displayQuestion {
+    background-color: #018bb7;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #d4ebb1;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px; 
+}
+#instructions-icon {
+	position: absolute;
+	bottom: 0%;
+	left: 0px;
+	margin: 20px;
+	height: auto;
+	width: 55px;
+	cursor: pointer;
+}
+.instructions {
+	position: absolute;
+	bottom: 0px;
+	left: 80px;
+	width: 600px;
+	height: 600px;
+	color: black;
+	margin: 20px;
+	background-color: rgba(255, 255, 255, .7);
+	box-shadow: 0 0 8px black;  
+	font-size:25px;
+	border-radius: 15px;
+	padding: 20px;
+	display: none;
+	z-index: 1;
+}
+#USAMap {
+	position: absolute;
+	bottom: 0%;
+	right: 0px;
+	width: 700px;
+	height: 400px;
+	color: black;
+	margin: 20px;
+	background-color: rgba(255, 255, 255, .7); 
+	box-shadow: 0 0 8px black;
+}

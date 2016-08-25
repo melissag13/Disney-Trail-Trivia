@@ -43,11 +43,23 @@ var waypoints = [
 // Arrays to randomly pull correct and incorrect messages from
 var correctMessages = [ "That was a quick pitstop, let's get back on the road!",
 						"Sun is shining, gas tank is full, kids are buckled in, let's get moving!",
-						"Phew, that cop wasn't looking our way, guess maybe we should stick to the speed limit"
+						"Phew, that cop wasn't looking our way, guess maybe we should stick to the speed limit",
+						"Keep this up and we'll be there in no time!",
+						"The kids are asleep, let's make up for lost time.",
+						"Good thing we were able to avoid that construction, thank goodness they had warning signs."
 					  ];
 var incorrectMessages = ["Oh no, you ran out of gas! Looks like we'll be here awhile.",
 						 "Flat tire, where's the spare?",
-						 "I thought the sign said 70 officer!  Guess we won't be going anywhere for awhile."
+						 "I thought the sign said 70 officer!  Guess we won't be going anywhere for awhile.",
+						 "Headlight out, going to have to stop at the parts store, bummer!",
+						 "Did the detour sign say to turn left or right? Guess we're lost now!",
+						 "Ugh!  Why is there so much construction, this is not moving!",
+						 "You were speeding and got a ticket, better watch out for the signs!",
+						 "Your car insurance expired. Please renew it ASAP.",
+						 "You got locked out, please call AAA or contact your rental car company for help.",
+						 "Such a bad day!! Your car is broken down and you lost your wallet.",
+						 "You almost got hit by lightning!! Park your car and get into a safe place.",
+						 "Lost your phone at that last gas station. Go back to find it."
 						];
 // Global variables to keep track of current waypoint index
 currentWaypointIndex = 0;
@@ -60,6 +72,7 @@ var mapUSA;
 var waypointsArray = [];
 
 function initialize() {	
+	$('.full').fireworks();
 	// Define map properties
 	var mapUSAProperties = {
 		center:new google.maps.LatLng(39.1119932,-95.1798217),
@@ -72,7 +85,7 @@ function initialize() {
 	// Call the Marker constructor to create a marker
 	var marker=new google.maps.Marker({
 		position: {lat: waypoints[0].lattitude, lng: waypoints[0].longitude},
-		icon:'kh-car-icon.png',
+		icon:'assets/images/car-icon.png',
 		title: 'Click here to start',
 	});
 	//Add the marker to the map
@@ -83,6 +96,7 @@ function initialize() {
 		// Toggle display divs
 		$('.questionPanel').toggle(true);
 		$('.messagePanel').toggle(false);
+		$('.click-start-div').hide();		
 
 		var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 		console.log(queryURL);
@@ -113,6 +127,7 @@ function randomQuestion(response) {
 	$('.questionPanel').show();
 	$('.messagePanel').hide();
 	$('#btnContinue').hide();
+	$('.click-start-div').hide();
 	// Variables to build jquery objects for display
 	var $displayAnswers = $('#displayAnswers');
 	var $questionDiv = $('#displayQuestion');
@@ -144,18 +159,19 @@ function randomQuestion(response) {
 		 				// Toggle question and message panel display
 		 				$('.questionPanel').hide();
 						$('.messagePanel').show();
-						$('#btnContinue').show();						
+						$('#btnContinue').show();
+						$('.click-start-div').hide();
 		 				// If correct show map with next waypoint plotted
 		 				// and show congrats message
 						if (index==correctAnswerIndex) {							
 							updateCurrentWaypoint();						
 							nextWaypoint();
-							$('#messageDiv').html(correctMessages[Math.floor((Math.random() * correctMessages.length))])
+							$('.messageDiv').html(correctMessages[Math.floor((Math.random() * correctMessages.length))])
 											.removeClass("incorrect-answer")
 											.addClass("correct-answer");
 	                	} else {
 	                		// Answer was incorrect, show bummer message, map does not move
-	                		$('#messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
+	                		$('.messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
 	                						.removeClass("correct-answer")
 	                						.addClass("incorrect-answer");
 	                	}
@@ -192,7 +208,7 @@ function nextWaypoint() {
 			var currentDestinationMarker=new google.maps.Marker({
 				position: {lat: waypoints[currentWaypointIndex].lattitude, 
 						   lng: waypoints[currentWaypointIndex].longitude},
-				icon:'kh-car-icon.png'
+				icon:'assets/images/car-icon.png'
 			});
 			//Add the marker to the map
 			currentDestinationMarker.setMap(mapUSA);
@@ -219,6 +235,6 @@ $('#btnContinue').on('click', function() {
 
 
 
-$("#instructIcon").on('click', function(){
+$("#instructions-icon").on('click', function(){
 	$(".instructions").toggle();
 })
