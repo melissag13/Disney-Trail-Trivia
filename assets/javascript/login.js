@@ -26,8 +26,7 @@ function validateForm(e) {
 }
 
 
-//$('#userLogin').on("submit", function(e) {
-$('#addUser').on('click', function(e) {
+$('#userLogin').on("submit", function(e) {
 	console.log("submit click");
 	e.preventDefault();
 	var isValid = validateForm();
@@ -52,7 +51,8 @@ $('#addUser').on('click', function(e) {
 	
 	var currentLocation = window.location.href; //index.html
 	console.log(currentLocation);
-	var nextLocation = currentLocation.replace('index.html', 'disney-trail.html'); // disney-trail.html
+	//var nextLocation = currentLocation.replace('index.html', 'disney-trail.html'); // disney-trail.html
+	var nextLocation = currentLocation + 'disney-trail.html';
 	console.log("nextLocation:", nextLocation);
 	// Doesn't refresh the page
 	window.location = nextLocation;
