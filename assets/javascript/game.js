@@ -46,7 +46,10 @@ var correctMessages = [ "That was a quick pitstop, let's get back on the road!",
 						"Phew, that cop wasn't looking our way, guess maybe we should stick to the speed limit",
 						"Keep this up and we'll be there in no time!",
 						"The kids are asleep, let's make up for lost time.",
-						"Good thing we were able to avoid that construction, thank goodness they had warning signs."
+						"Good thing we were able to avoid that construction, thank goodness they had warning signs.",
+						"Google Maps is keeping us on track!",
+						"Clear blue skies ahead! That means smooth driving!",
+						"That was a great shortcut, we're making great time!"
 					  ];
 var incorrectMessages = ["Oh no, you ran out of gas! Looks like we'll be here awhile.",
 						 "Flat tire, where's the spare?",
@@ -71,8 +74,12 @@ var mapUSA;
 
 var waypointsArray = [];
 
-function initialize() {	
-	$('.full').fireworks();
+/* ************************************************************	*/
+/* Function : randomQuestion									*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
+function initialize() {		
 	// Define map properties
 	var mapUSAProperties = {
 		center:new google.maps.LatLng(39.1119932,-95.1798217),
@@ -161,20 +168,30 @@ function randomQuestion(response) {
 						$('.messagePanel').show();
 						$('#btnContinue').show();
 						$('.click-start-div').hide();
-		 				// If correct show map with next waypoint plotted
+		 				// If correct answer show map with next waypoint plotted
 		 				// and show congrats message
-						if (index==correctAnswerIndex) {							
-							updateCurrentWaypoint();						
-							nextWaypoint();
-							$('.messageDiv').html(correctMessages[Math.floor((Math.random() * correctMessages.length))])
-											.removeClass("incorrect-answer")
-											.addClass("correct-answer");
-	                	} else {
-	                		// Answer was incorrect, show bummer message, map does not move
-	                		$('.messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
-	                						.removeClass("correct-answer")
-	                						.addClass("incorrect-answer");
-	                	}
+		 				console.log("currentWaypointIndex:", currentWaypointIndex);
+		 				console.log("waypoints.length:", waypoints.length);
+						if (currentWaypointIndex < (waypoints.length - 1)) {
+							if (index==correctAnswerIndex) {							
+								updateCurrentWaypoint();						
+								nextWaypoint();
+								$('.messageDiv').html(correctMessages[Math.floor((Math.random() * correctMessages.length))])
+												.removeClass("incorrect-answer")
+												.addClass("correct-answer");
+		                	} else {
+		                		// Answer was incorrect, show bummer message, map does not move
+		                		$('.messageDiv').html(incorrectMessages[Math.floor((Math.random() * incorrectMessages.length))])
+		                						.removeClass("correct-answer")
+		                						.addClass("incorrect-answer");
+		                	}
+		                } else {
+		                	console.log("We made it!");
+		                	$('#btnContinue').hide();
+		                	$('.messageDiv').html("We made it to Disney World!").removeClass("incorrect-answer correct-answer");
+		                	var $castle = $('<img>').attr("src", "../images/castle.jpg").addClass("castle").appendTo($('.messageDiv'));
+		                	$('.fireworks').fireworks();
+		                }
 		 			})
 	 			);	 	
 	 	// Append it to the element
@@ -182,15 +199,26 @@ function randomQuestion(response) {
 	});		
 };
 
+/* ************************************************************	*/
+/* Function : randomQuestion									*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
 function updateCurrentWaypoint() {
 	// Update current waypoint index
 	currentWaypointIndex++;	
+	console.log("update waypoint after:", currentWaypointIndex);
 	// set next waypoint in array
 	waypointsArray.push({location : {lat: waypoints[currentWaypointIndex].lattitude,
 									 lng: waypoints[currentWaypointIndex].longitude}});
 	
 }
 
+/* ************************************************************	*/
+/* Function : randomQuestion									*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
 function nextWaypoint() {	
 	directionsService.route({
 		origin: {lat: waypoints[0].lattitude, lng: waypoints[0].longitude},
@@ -220,6 +248,11 @@ function nextWaypoint() {
 
 }
 
+/* ************************************************************	*/
+/* Function : Continue button on click							*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
 $('#btnContinue').on('click', function() {
 	var queryURL = "https://crossorigin.me/http://www.opentdb.com/api.php?amount=1&difficulty=easy&type=multiple";
 	console.log(queryURL);
@@ -233,8 +266,11 @@ $('#btnContinue').on('click', function() {
 	})
 });
 
-
-
+/* ************************************************************	*/
+/* Function : randomQuestion									*/
+/* Parameters : response										*/
+/* Description : This function 									*/
+/* ************************************************************	*/
 $("#instructions-icon").on('click', function(){
 	$(".instructions").toggle();
 })
