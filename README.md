@@ -36,8 +36,6 @@
 
 ###Deployed App:
 
-Firebase: https://console.firebase.google.com/project/disney-trail/database/data/
-
 Heroku: https://floating-fortress-63837.herokuapp.com/
 
 
